@@ -1,19 +1,19 @@
 ---
 - name: Deploy Docker container
-  hosts: your_servers
-  become: yes
+  hosts: localhost
+  become: yes  # Use sudo privileges if needed for Docker
   tasks:
     - name: Pull Docker image from DockerHub
       docker_image:
-        name: user/app-image
+        name: kousai12/java-app
         tag: latest
         source: pull
 
     - name: Run Docker container
       docker_container:
         name: app_container
-        image: user/app-image
+        image: kousai12/java-app
         state: started
         restart_policy: always
         ports:
-          - "9090:8080"  # Mapping du port 8080 du conteneur vers le port 9090 de l'hôte
+          - "9090:8080"  # Map port 8080 of the container to port 9090 on the host
