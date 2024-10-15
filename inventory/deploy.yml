@@ -1,0 +1,19 @@
+---
+- name: Deploy Docker container
+  hosts: your_servers
+  become: yes
+  tasks:
+    - name: Pull Docker image from DockerHub
+      docker_image:
+        name: user/app-image
+        tag: latest
+        source: pull
+
+    - name: Run Docker container
+      docker_container:
+        name: app_container
+        image: user/app-image
+        state: started
+        restart_policy: always
+        ports:
+          - "9090:8080"  # Mapping du port 8080 du conteneur vers le port 9090 de l'hôte
