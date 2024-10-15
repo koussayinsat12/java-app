@@ -17,3 +17,4 @@
         restart_policy: always
         ports:
           - "9090:8080"  # Map port 8080 of the container to port 9090 on the host
+
